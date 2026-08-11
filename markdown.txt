@@ -1,0 +1,273 @@
+
+# Guia de Referência Rápida de Markdown
+
+Este é um arquivo markdown de exemplo para ajudar você a escrever em Markdown rapidamente :)
+
+Se você usa o fabuloso editor Sublime Text 2/3 junto com o plugin Markdown Preview, abra a paleta do seu ST2 com CMD+⇧+P e escolha Markdown Preview in browser para ver o resultado no seu navegador.
+
+## Básico de texto
+
+isto é *itálico* e isto é **negrito**. outro *itálico* e outro **negrito**.
+
+isto é um texto importante. e sinais de porcentagem: % e %
+
+Este é um parágrafo com uma nota de rodapé (apenas no analisador embutido). [^note-id]
+
+Insira [TOC] sem espaços para gerar um sumário (apenas analisadores embutidos).
+
+## Indentação
+
+> Aqui está um texto indentado
+>
+> > ainda mais indentado
+> >
+> >
+
+## Títulos
+
+# Título grande (h1)
+## Título médio (h2)
+### Título menor (h3)
+#### e assim por diante (hX)
+##### e assim por diante (hX)
+###### e assim por diante (hX)
+
+## Listas de exemplo (1)
+
+- marcadores podem ser `-`, `+`, ou `*`
+- lista com marcadores 1
+- lista com marcadores 2
+  - subitem 1
+  - subitem 2
+    com texto indentado dentro
+- lista com marcadores 3
+- lista com marcadores 4
+- lista com marcadores 5
+
+## Links
+
+Este é um exemplo de [link inline](https://example.com) e outro [com um título](https://example.com "Título do link").
+
+Links também podem ser baseados em referência: [referência 1][ref1] ou [referência 2][ref2] com título.
+
+As referências geralmente são colocadas no final do documento.
+
+[ref1]: https://example.com
+[ref2]: https://example.com "Título da referência"
+
+## Imagens
+
+Uma imagem de exemplo:
+
+![Texto alternativo](https://via.placeholder.com/150)
+
+Assim como os links, as imagens também podem usar referências em vez de links inline:
+
+![Texto alternativo][imagem1]
+
+[imagem1]: https://via.placeholder.com/150 "Imagem de exemplo"
+
+## Código
+
+É bem fácil mostrar código em arquivos markdown.
+
+Crases podem ser usadas para destacar algumas palavras.
+
+Além disso, qualquer bloco indentado é considerado um bloco de código. Se `enable_highlight` estiver definido como `true`, o destaque de sintaxe será incluído (para o analisador embutido — o analisador do GitHub faz isso automaticamente).
+
+```html
+<script>
+document.location = 'http://lmgtfy.com/?q=markdown+cheat+sheet';
+</script>
+```
+
+## Matemática
+
+Fórmulas matemáticas podem ser exibidas no navegador usando MathJax ou Katex. O recurso pode ser ativado configurando corretamente os campos de configuração `"js"`, `"css"` e `"markdown_extensions"`. Isso permite a inclusão de matemática inline:
+
+\(\frac{\pi}{2}\) \(\pi\).
+
+Alternativamente, a matemática pode ser escrita em sua própria linha:
+
+\[
+\int_0^1 f(t) \mathrm{d}t
+\]
+
+\[
+\sum_j \gamma_j^2/d_j
+\]
+
+## GitHub Flavored Markdown
+
+Se você usa o analisador do GitHub, pode usar parte da sintaxe do GitHub Flavored Markdown:
+
+- Usuário/Projeto@SHA: `revolunet/sublimetext-markdown-preview@7da61badeda468b5019869d11000307e07e07401`
+- Usuário/Projeto#Issue: `revolunet/sublimetext-markdown-preview#1`
+- Usuário: [@revolunet](https://github.com/revolunet)
+
+Um pouco de código Python:
+
+```python
+import random
+
+class CardGame(object):
+    """uma classe python de exemplo"""
+    NB_CARDS = 32
+
+    def __init__(self, cards=5):
+        self.cards = random.sample(range(self.NB_CARDS), 5)
+        print 'pronto para jogar'
+```
+
+Um pouco de código Javascript:
+
+```js
+var config = {
+    duration: 5,
+    comment: 'WTF'
+}
+
+// a beleza das callbacks em ação
+async_call('/path/to/api', function(json) {
+    another_call(json, function(result2) {
+        another_another_call(result2, function(result3) {
+            another_another_another_call(result3, function(result4) {
+                alert('E se tudo correu bem, eu consegui meu resultado :)');
+            });
+        });
+    });
+})
+```
+
+O Markdown do GitHub também traz um ótimo suporte a Emojis: 👍 ❤️ 🍺
+
+[^note-id]: Este é o texto da nota.
+
+## Analisadores e Extensões
+
+O Markdown Preview vem com o **Python-Markdown** pré-carregado.
+
+### *Python-Markdown*
+
+O Analisador Python-Markdown oferece suporte a várias extensões.
+
+#### Extensões Extras
+
+- `abbr` -- Abreviações
+- `attr_list` -- Listas de Atributos
+- `def_list` -- Listas de Definição
+- `fenced_code` -- Blocos de Código Delimitados
+- `footnotes` -- Notas de Rodapé
+- `tables` -- Tabelas
+- `smart_strong` -- Negrito Inteligente
+
+Você pode ativá-las todas de uma vez usando a palavra-chave `extra`.
+
+```yaml
+extensions: ['extra']
+```
+
+Se você quiser todos os extras mais a extensão `toc`, suas configurações ficariam assim:
+
+```yaml
+{
+    ...
+    parser: 'markdown',
+    extensions: ['extra', 'toc'],
+    ...
+}
+```
+
+#### Outras Extensões
+
+Também existem algumas extensões que não estão incluídas no Markdown Extra, mas vêm na biblioteca padrão do Python-Markdown.
+
+- `code-hilite` -- Destaque de Código
+- `header-id` -- ID de Cabeçalho
+- `meta_data` -- Metadados
+- `nl2br` -- Quebra de Linha Automática
+- `sane_lists` -- Listas Sensatas
+- `smarty` -- Smarty
+- `toc` -- Sumário
+- `wikilinks` -- WikiLinks
+
+#### Extensões de Terceiros
+
+O *Python-Markdown* foi projetado para ser estendido.
+
+Algumas das extensões incluídas são:
+
+- `delete` -- suporte a tachado no estilo GitHub via ~~palavra~~
+- `githubemoji` -- suporte a emojis do GitHub
+- `tasklist` -- listas de tarefas no estilo GitHub
+- `magiclink` -- conversão automática de links http|ftp no estilo GitHub
+- `headeranchor` -- links de âncora para cabeçalhos no estilo GitHub
+- `github` -- adiciona as extensões acima de uma só vez
+- `b64` -- converte e embute imagens locais em base64. Configurado adicionando `b64(base_path=${BASE_PATH})`
+
+Existem também várias outras disponíveis.
+
+Basta fazer um fork deste repositório e adicionar suas extensões dentro da pasta:
+
+`.../Packages/Markdown Preview/markdown/extensions/`
+
+Confira a lista de Extensões de Terceiros.
+
+#### Extensões Padrão
+
+As extensões padrão são:
+
+- `footnotes` -- Notas de Rodapé
+- `toc` -- Sumário
+- `fenced_code` -- Blocos de Código Delimitados
+- `tables` -- Tabelas
+
+Use a palavra-chave `default` para selecionar todas elas.
+
+Se você quiser todos os padrões mais a extensão `definition_lists`, suas configurações ficariam assim:
+
+```yaml
+{
+    ...
+    parser: 'markdown',
+    extensions: ['default', 'definition_lists'],
+    ...
+}
+```
+
+## Exemplos
+
+### Tabelas
+
+A extensão `tables` do analisador *Python-Markdown* vem ativada por padrão, mas atualmente **não** está disponível no *Markdown2*.
+
+A sintaxe foi adotada do projeto PHP Markdown e também é usada no GitHub Flavored Markdown.
+
+| Ano | Temperatura (mínima) | Temperatura (máxima) |
+|---|---:|---:|
+| 1900 | -10 | 25 |
+| 1910 | -15 | 30 |
+| 1920 | -10 | 32 |
+
+### Tabelas Wiki
+
+Se você estiver usando o *Markdown2* com o extra `wiki-tables` ativado, deverá ver uma tabela abaixo:
+
+|| *Ano* || *Temperatura (mínima)* || *Temperatura (máxima)* ||
+|| 1900 || -10 || 25 ||
+|| 1910 || -15 || 30 ||
+|| 1920 || -10 || 32 ||
+
+### Listas de Definição
+
+Este exemplo requer a extensão `def_list` do *Python Markdown*.
+
+Maçã
+: Fruto pomáceo de plantas do gênero *Malus* na família Rosaceae.
+
+Laranja
+: O fruto de uma árvore perene do gênero *Citrus*.
+
+## Sobre
+
+Este plugin e este arquivo de exemplo são orgulhosamente apresentados a você pela equipe revolunet.
